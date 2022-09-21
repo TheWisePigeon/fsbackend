@@ -17,7 +17,7 @@ const utils_1 = __importDefault(require("../utils"));
 const { logger } = utils_1.default;
 const connectionPool = () => __awaiter(void 0, void 0, void 0, function* () {
     mongoose_1.default
-        .connect("mongodb://localhost:27017/", {})
+        .connect("mongodb://localhost:27017/fs101", {})
         .then(() => {
         logger("success", "Connected to database");
     })

@@ -5,7 +5,7 @@ const { logger } = utils
 
 const connectionPool = async () => {
     mongoose
-        .connect("mongodb://localhost:27017/", {
+        .connect("mongodb://localhost:27017/fs101", {
 
         })
         .then(
