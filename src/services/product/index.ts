@@ -9,9 +9,6 @@ const getProducts = async (req: Request, res: Response)=> {
 
 }
 
-const getProduct = async (req: Request, res: Response)=> {
-
-}
 
 const updateProduct = async (req: Request, res: Response)=> {
 
@@ -24,7 +21,6 @@ const deleteProduct = async (req: Request, res: Response)=> {
 const productService = {
     createProduct,
     getProducts,
-    getProduct,
     updateProduct,
     deleteProduct
 }

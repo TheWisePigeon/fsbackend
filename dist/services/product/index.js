@@ -13,8 +13,6 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
-const getProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-});
 const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -22,7 +20,6 @@ const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 const productService = {
     createProduct,
     getProducts,
-    getProduct,
     updateProduct,
     deleteProduct
 };

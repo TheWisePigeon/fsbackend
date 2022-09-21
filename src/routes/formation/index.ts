@@ -7,10 +7,8 @@ router.route("/create").post(formationService.createFormation)
 
 router.route("/get").get(formationService.getFormations)
 
-router.route("/get/:id").post(formationService.getFormation)
+router.route("/update").put(formationService.updateFormation)
 
-router.route("/update/:id").post(formationService.updateFormation)
-
-router.route("/delete/:id").post(formationService.deleteFormation)
+router.route("/delete").delete(formationService.deleteFormation)
 
 export default router

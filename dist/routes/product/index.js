@@ -8,7 +8,6 @@ const product_1 = __importDefault(require("../../services/product"));
 const router = (0, express_1.Router)();
 router.route("/create").post(product_1.default.createProduct);
 router.route("/get").get(product_1.default.getProducts);
-router.route("/get/:id").post(product_1.default.getProduct);
 router.route("/update/:id").post(product_1.default.updateProduct);
 router.route("/delete/:id").post(product_1.default.deleteProduct);
 exports.default = router;
