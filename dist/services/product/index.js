@@ -8,8 +8,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const product_1 = __importDefault(require("../../models/product"));
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, price, image, description } = req.body;
+    const newProduct = new product_1.default({
+        name, price, image, description
+    });
+    newProduct.save((err, result) => {
+    });
 });
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
