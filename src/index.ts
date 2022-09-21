@@ -7,12 +7,13 @@ import announcement from "./routes/announcement"
 import product from "./routes/product"
 import recipe from "./routes/recipe"
 import formation from "./routes/formation"
-const DB_URL = process.env.NODE_ENV=="production" ? process.env.DB_URL : process.env.DB_URL_DEV
+import cors from "cors"
 const { connectionPool, PORT } = config
 
 connectionPool()
 const app = express()
 app.use(bodyParser.json())
+app.use(cors())
 app.use("/announcement", announcement)
 app.use("/product", product)
 app.use("/recipe", recipe)
