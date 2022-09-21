@@ -1,15 +1,22 @@
-import express, { Express, Response, Request } from "express"
+import express from "express"
 import * as dotenv from "dotenv"
 import bodyParser from "body-parser"
-import utils from "../src/utils"
 import config from "./config"
+import announcement from "./routes/announcement"
+import product from "./routes/product"
+import recipe from "./routes/recipe"
+import formation from "./routes/formation"
 
 dotenv.config()
 
 const app = express()
-const { connectionPool } = config
+const { connectionPool, PORT } = config
+app.use(bodyParser.json())
+app.use("/announcement", announcement)
+app.use("/product", product)
+app.use("/recipe", recipe)
+app.use("/formation", formation)
 
-const PORT = process.env.PORT || 3000
 app.listen(PORT, async ()=>{
     await connectionPool()
     console.log(`App listening on port ${PORT} `)

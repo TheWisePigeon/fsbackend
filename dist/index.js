@@ -37,11 +37,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
+const body_parser_1 = __importDefault(require("body-parser"));
 const config_1 = __importDefault(require("./config"));
+const announcement_1 = __importDefault(require("./routes/announcement"));
+const product_1 = __importDefault(require("./routes/product"));
+const recipe_1 = __importDefault(require("./routes/recipe"));
+const formation_1 = __importDefault(require("./routes/formation"));
 dotenv.config();
 const app = (0, express_1.default)();
-const { connectionPool } = config_1.default;
-const PORT = process.env.PORT || 3000;
+const { connectionPool, PORT } = config_1.default;
+app.use(body_parser_1.default.json());
+app.use("/announcement", announcement_1.default);
+app.use("/product", product_1.default);
+app.use("/recipe", recipe_1.default);
+app.use("/formation", formation_1.default);
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     yield connectionPool();
     console.log(`App listening on port ${PORT} `);
