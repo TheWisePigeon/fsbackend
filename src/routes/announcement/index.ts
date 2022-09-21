@@ -7,10 +7,8 @@ router.route("/create").post(announcementService.createAnnoucement)
 
 router.route("/get").get(announcementService.getAnnoucements)
 
-router.route("/get/:id").post(announcementService.getAnnoucement)
+router.route("/update").put(announcementService.updateAnnoucement)
 
-router.route("/update/:id").post(announcementService.updateAnnoucement)
-
-router.route("/delete/:id").post(announcementService.deleteAnnoucement)
+router.route("/delete").delete(announcementService.deleteAnnoucement)
 
 export default router

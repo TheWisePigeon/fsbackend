@@ -8,21 +8,63 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const announcement_1 = __importDefault(require("../../models/announcement"));
+const utils_1 = __importDefault(require("../../utils"));
+const { logger } = utils_1.default;
 const createAnnoucement = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { title, media, description } = req.body;
+    const newAnnouncement = new announcement_1.default({
+        title,
+        media,
+        description
+    });
+    newAnnouncement.save((err, result) => {
+        if (err) {
+            logger("error", `Failed to insert anouncement ${err.message} `);
+            return res.status(500).send("Something went wrong");
+        }
+        logger("success", `New announcement added ${result.id}`);
+    });
+    return res.status(200).send({
+        data: newAnnouncement
+    });
 });
-const getAnnoucements = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-});
-const getAnnoucement = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAnnoucements = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const announcements = yield announcement_1.default.find();
+        logger("success", "Announcements fetched");
+        return res.status(200).send({
+            data: announcements
+        });
+    }
+    catch (error) {
+        logger("error", `Failed to fetch announcements ${error}`);
+        return res.status(500).send("Something went wrong");
+    }
 });
 const updateAnnoucement = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.body.id;
+    const { title, media, description } = req.body;
+    yield announcement_1.default.findByIdAndUpdate(id, { title, media, description });
+    const updatedAnnouncement = yield announcement_1.default.findById(id);
+    res.status(200).send({
+        data: updatedAnnouncement
+    });
 });
 const deleteAnnoucement = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.body.id;
+    const deletedAnnouncement = yield announcement_1.default.findByIdAndDelete(id);
+    return res.status(200).send({
+        data: deletedAnnouncement
+    });
 });
 const announcementService = {
     createAnnoucement,
     getAnnoucements,
-    getAnnoucement,
     updateAnnoucement,
     deleteAnnoucement
 };
