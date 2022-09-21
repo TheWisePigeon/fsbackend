@@ -15,9 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const utils_1 = __importDefault(require("../utils"));
 const { logger } = utils_1.default;
+const databaseUrl = process.env.DB_URL || "mongodb://localhost:27017/fs101";
 const connectionPool = () => __awaiter(void 0, void 0, void 0, function* () {
     mongoose_1.default
-        .connect("mongodb://localhost:27017/fs101", {})
+        .connect(databaseUrl, {})
         .then(() => {
         logger("success", "Connected to database");
     })

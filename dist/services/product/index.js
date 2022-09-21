@@ -19,13 +19,34 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         name, price, image, description
     });
     newProduct.save((err, result) => {
+        if (err) {
+            return res.status(500).send("Something went wrong");
+        }
+        return res.status(200).send({
+            data: result
+        });
     });
 });
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const products = yield product_1.default.find();
+    return res.status(200).send({
+        data: products
+    });
 });
 const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id, name, price, image, description } = req.body;
+    yield product_1.default.findByIdAndUpdate(id, { name, price, image, description });
+    const updatedProduct = yield product_1.default.findById(id);
+    return res.status(200).send({
+        data: updatedProduct
+    });
 });
 const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.body;
+    const deletedProduct = yield product_1.default.findByIdAndDelete(id);
+    return res.status(200).send({
+        data: deletedProduct
+    });
 });
 const productService = {
     createProduct,

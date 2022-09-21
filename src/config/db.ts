@@ -3,9 +3,10 @@ import utils from "../utils";
 import config from ".";
 const { logger } = utils
 
+const databaseUrl = process.env.DB_URL || "mongodb://localhost:27017/fs101"
 const connectionPool = async () => {
     mongoose
-        .connect("mongodb://localhost:27017/fs101", {
+        .connect(databaseUrl, {
 
         })
         .then(
